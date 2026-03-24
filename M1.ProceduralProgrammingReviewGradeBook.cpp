@@ -13,7 +13,6 @@ int OpenFile();
 
 int main()
 {
-    string filename;
 
     OpenFile();
 
@@ -21,14 +20,6 @@ int main()
 }
 
 int OpenFile() {
-    vector<string> names;
-    vector<int> grades;
-    
-    string name;
-    string line;
-
-    int grade;
-    
     string filename = "StudentGrades.txt";
 
     ifstream inFile;
@@ -39,13 +30,27 @@ int OpenFile() {
         cout << "Error opening file.\n";
         return 1;
     }
+}
+
+void ReadThroughFile() {
+    vector<string> names;
+    vector<int> grades;
+
+    string name;
+    string line;
+
+    int grade;
+    
+    ifstream inFile;
 
     getline(inFile, line);
 
-        names.push_back(name);
-        grades.push_back(grade);
-    
+    names.push_back(name);
+    grades.push_back(grade);
 
 
-    inFile.close();
+
+
+
+
 }
