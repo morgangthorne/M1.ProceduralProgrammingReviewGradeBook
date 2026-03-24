@@ -4,6 +4,8 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <vector>
+
 
 using namespace std;
 
@@ -15,10 +17,18 @@ int main()
 
     OpenFile();
 
-    cout << "Hello World!\n";
+    
 }
 
 int OpenFile() {
+    vector<string> names;
+    vector<int> grades;
+    
+    string name;
+    string line;
+
+    int grade;
+    
     string filename = "StudentGrades.txt";
 
     ifstream inFile;
@@ -30,11 +40,12 @@ int OpenFile() {
         return 1;
     }
 
-    char c;
-    while (inFile.get(c))
-        cout << c;
+    getline(inFile, line);
+
+        names.push_back(name);
+        grades.push_back(grade);
+    
+
 
     inFile.close();
-
-
 }
