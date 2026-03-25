@@ -4,17 +4,16 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <vector>
 #include <sstream>
-
 
 using namespace std;
 
-int OpenFile(string filename);
-void ReadThroughFile(string filename);
-
 //Global Const for number of tests
 const int AmountOfTestsPerStudent = 5;
+
+//Function Prototypes
+int OpenFile(string filename);
+void ReadThroughFile(string filename, string Names[], int Score[][AmountOfTestsPerStudent], int &NumberOfStudents);
 
 int main()
 {
@@ -27,9 +26,11 @@ int main()
     int NumberOfStudents = 0;
     double Averages[MaxStudents];
  
-    OpenFile(filename);
+    if (OpenFile(filename) == 1) {
+        return 1;
+    }
 
-    ReadThroughFile(filename);
+    ReadThroughFile(filename, Names, Score, NumberOfStudents);
 }
 
 int OpenFile(string filename) {
@@ -41,28 +42,17 @@ int OpenFile(string filename) {
         return 1;
     }
     inFile.close();
+
+    return 0;
 }
 
-void ReadThroughFile(string filename) {
-    vector<string> names;
-    vector<int> grades;
-
-    string name;
+void ReadThroughFile(string filename, string Names[], int Score[][AmountOfTestsPerStudent], int& NumberOfStudents) {
     string line;
 
-    int grade;
-    
     ifstream inFile;
     inFile.open(filename);
 
-    while (getline(inFile, line)) {
-        stringstream ss(line);
-        ss >> name;
+    
 
-        for (int i = 0; i < AmountOfTestsPerStudent; i++) {
-            stringstream ss(line);
-            ss >> grade;
-        }
-    }
 
 }
