@@ -4,7 +4,6 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <sstream>
 
 using namespace std;
 
@@ -47,12 +46,14 @@ int OpenFile(string filename) {
 }
 
 void ReadThroughFile(string filename, string Names[], int Score[][AmountOfTestsPerStudent], int& NumberOfStudents) {
-    string line;
+    ifstream inFile(filename);
 
-    ifstream inFile;
-    inFile.open(filename);
+    while (inFile >> Names[NumberOfStudents]) {
+        for (int i = 0; i < AmountOfTestsPerStudent; i++) {
+            inFile >> Score[NumberOfStudents][i];
+        }
+        NumberOfStudents++;
+    }
 
-    
-
-
+    inFile.close();
 }
