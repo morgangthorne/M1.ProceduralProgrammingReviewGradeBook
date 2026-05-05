@@ -4,6 +4,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <iomanip>
 
 using namespace std;
 
@@ -14,6 +15,9 @@ const int AmountOfTestsPerStudent = 5;
 int OpenFile(string filename);
 void ReadThroughFile(string filename, string Names[], int Score[][AmountOfTestsPerStudent], int &NumberOfStudents);
 void CalculateAverages(int score[][AmountOfTestsPerStudent], double Averages[], int NumberOfStudents);
+char GetLetterGrade(double avg);
+void PrintReport(string Names[], double Averages[], int NumberOfStudents);
+
 
 int main()
 {
@@ -31,6 +35,12 @@ int main()
     }
 
     ReadThroughFile(filename, Names, Score, NumberOfStudents);
+
+    CalculateAverages(Score, Averages, NumberOfStudents);
+
+    PrintReport(Names, Averages, NumberOfStudents);
+
+    return 0;
 }
 
 int OpenFile(string filename) {
@@ -67,5 +77,23 @@ void CalculateAverages(int score[][AmountOfTestsPerStudent], double Averages[], 
         }
 
         Averages[i] = (double)sum / AmountOfTestsPerStudent;
+    }
+}
+
+char GetLetterGrade(double avg) {
+    if (avg >= 90) return 'A';
+    else if (avg >= 80) return 'B';
+    else if (avg >= 70) return 'C';
+    else if (avg >= 60) return 'D';
+    else return 'F';
+}
+
+void PrintReport(string Names[], double Averages[], int NumberOfStudents) {
+    cout << left << setw(15) << "Name" << setw(10) << "Average" << setw(10) << "Grade" << endl;
+    cout << "-----------------------------------\n";
+
+    for (int i = 0; i < NumberOfStudents; i++) {
+        cout << left << setw(15) << Names[i] << setw(10) << fixed << setprecision(2) << Averages[i]
+            << setw(10) << GetLetterGrade(Averages[i]) << endl;
     }
 }
