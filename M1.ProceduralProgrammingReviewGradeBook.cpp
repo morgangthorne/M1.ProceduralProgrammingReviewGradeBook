@@ -13,6 +13,7 @@ const int AmountOfTestsPerStudent = 5;
 //Function Prototypes
 int OpenFile(string filename);
 void ReadThroughFile(string filename, string Names[], int Score[][AmountOfTestsPerStudent], int &NumberOfStudents);
+void CalculateAverages(int score[][AmountOfTestsPerStudent], double Averages[], int NumberOfStudents);
 
 int main()
 {
@@ -54,6 +55,17 @@ void ReadThroughFile(string filename, string Names[], int Score[][AmountOfTestsP
         }
         NumberOfStudents++;
     }
-
     inFile.close();
+}
+
+void CalculateAverages(int score[][AmountOfTestsPerStudent], double Averages[], int NumberOfStudents) {
+    for (int i = 0; i < NumberOfStudents; i++) {
+        int sum = 0;
+
+        for (int j = 0; j < AmountOfTestsPerStudent; j++) {
+            sum += score[i][j];
+        }
+
+        Averages[i] = (double)sum / AmountOfTestsPerStudent;
+    }
 }
